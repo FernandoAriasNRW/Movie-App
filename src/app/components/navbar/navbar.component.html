@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand p-2 ms-2" href="#">
+    Movies App
+    <img class="me-2" src="assets/img/logo_movie_app.jpg" alt="App Logo" width="30" height="24">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="dropdown"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse row" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto col-6">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['']" >Movies</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0 col-6 d-flex flex-row">
+      <input class="form-control me-2" type="search" placeholder="Search" (keydown.enter)="searchMovie($event, searchtext.value)" #searchtext >
+      <button class="btn btn-outline-light my-2 my-sm-0" type="button" (click)="searchMovie($event, searchtext.value)">Search</button>
+    </form>
+  </div>
+</nav>
