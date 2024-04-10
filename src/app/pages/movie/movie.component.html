@@ -1,1 +1,107 @@
-<p>movie works!</p>
+<p *ngIf="!movie">Sorry! Not found details for this movie</p>
+
+<div class="row m-4 text-white detail" *ngIf="movie">
+  <div class="col-6">
+
+    <h1 class="h1 mb-3">{{ movie.title }} ({{ movie.release_date | date:'y' }})</h1>
+
+    <p class="paragraph">{{ movie.overview }}</p>
+
+    <div class="row mt-5 mb-4">
+
+      <div class="col-6 genres">
+        <h4 class="fw-bold"> Genres </h4>
+        <ul class="list-unstyled">
+          <li *ngFor="let genre of movie.genres" class="me-3">
+            {{ genre.name }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-6 rating d-flex flex-row justify-content-around">
+        <div class="row d-flex flex-column justify-content-lg-start">
+          <h4 class="fw-bold">Rating</h4>
+          <div class="col-12 text-warning align-self-lg-start">
+            <i *ngIf="(movie.vote_average | average) < 5" class="bi bi-star"></i>
+            <i *ngIf="(movie.vote_average | average) < 10 && (movie.vote_average | average) >= 5"
+              class="bi bi-star-half"></i>
+            <i *ngIf="(movie.vote_average | average) >= 10" class="bi bi-star-fill"></i>
+            <i *ngIf="(movie.vote_average | average) < 15" class="bi bi-star"></i>
+            <i *ngIf="(movie.vote_average | average) < 20 && (movie.vote_average | average) >= 15"
+              class="bi bi-star-half"></i>
+            <i *ngIf="(movie.vote_average | average) >= 20" class="bi bi-star-fill"></i>
+            <i *ngIf="(movie.vote_average | average) < 25" class="bi bi-star"></i>
+            <i *ngIf="(movie.vote_average | average) < 30 && (movie.vote_average | average) >= 25"
+              class="bi bi-star-half"></i>
+            <i *ngIf="(movie.vote_average | average) >= 30" class="bi bi-star-fill"></i>
+            <i *ngIf="(movie.vote_average | average) < 35" class="bi bi-star"></i>
+            <i *ngIf="(movie.vote_average | average) < 40 && (movie.vote_average | average) >= 35"
+              class="bi bi-star-half"></i>
+            <i *ngIf="(movie.vote_average | average) >= 40" class="bi bi-star-fill"></i>
+            <i *ngIf="(movie.vote_average | average) < 45" class="bi bi-star"></i>
+            <i *ngIf="(movie.vote_average | average)< 50 && (movie.vote_average | average) >= 45"
+              class="bi bi-star-half"></i>
+            <i *ngIf="(movie.vote_average | average) >= 50" class="bi bi-star-fill"></i>
+            <i *ngIf="(movie.vote_average | average) < 55" class="bi bi-star"></i>
+            <i *ngIf="(movie.vote_average | average) < 60 && (movie.vote_average | average) >= 55"
+              class="bi bi-star-half"></i>
+            <i *ngIf="(movie.vote_average | average) >= 60" class="bi bi-star-fill"></i>
+            <i *ngIf="(movie.vote_average | average) < 65" class="bi bi-star"></i>
+            <i *ngIf="(movie.vote_average | average) < 70 && (movie.vote_average | average) >= 65"
+              class="bi bi-star-half"></i>
+            <i *ngIf="(movie.vote_average | average) >= 70" class="bi bi-star-fill"></i>
+            <i *ngIf="(movie.vote_average | average) < 75" class="bi bi-star"></i>
+            <i *ngIf="(movie.vote_average | average) < 80 && (movie.vote_average | average) >= 75"
+              class="bi bi-star-half"></i>
+            <i *ngIf="(movie.vote_average | average) >= 80" class="bi bi-star-fill"></i>
+            <i *ngIf="(movie.vote_average | average) < 85" class="bi bi-star"></i>
+            <i *ngIf="(movie.vote_average | average) < 90 && (movie.vote_average | average) >= 85"
+              class="bi bi-star-half"></i>
+            <i *ngIf="(movie.vote_average | average) >= 90" class="bi bi-star-fill"></i>
+            <i *ngIf="(movie.vote_average | average) < 95" class="bi bi-star"></i>
+            <i *ngIf="(movie.vote_average | average)< 100 && (movie.vote_average | average) >= 95"
+              class="bi bi-star-half"></i>
+            <i *ngIf="(movie.vote_average | average) >= 100" class="bi bi-star-fill"></i>
+          </div>
+        </div>
+        <div class="fw-bold align-self-start">
+          {{ movie.vote_average | number: '1.1-1'}}
+        </div>
+      </div>
+    </div>
+    <div class="produced">
+      <h4 class="fw-bold"> Produced By </h4>
+      <ul class="list-unstyled fw-bold mt-4 d-flex flex-lg-row justify-content-lg-start">
+        <li *ngFor="let company of (movie.production_companies | noLogo )" class="me-3 align-self-center">
+          <a [href]="company.logo_path | images:'logo'" class="text-decoration-none text-white">
+            <img [src]="company.logo_path | images:'logo'" [alt]="company.name" class="img-fluid w-50 logo">
+            <p>{{ company.name }}</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-outline-primary fw-bold" (click)="OnBack()">
+          Back
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <img [src]="movie.poster_path | images" [alt]="movie.original_title" class="img-fluid w-75 poster">
+  </div>
+</div>
+<div class="row m-3 detail text-white">
+  <div class="credits">
+    <h4 class="text-center fw-bold mt-5"> Casting </h4>
+    <ul class="list-unstyled fw-bold mt-4 d-flex flex-lg-row justify-content-lg-start">
+      <li *ngFor="let credit of (credits | noProfile)" class="me-3 align-self-center">
+        <a [href]="credit.profile_path | images:'logo'" class="text-decoration-none text-white">
+          <img [src]="credit.profile_path | images:'logo'" [alt]="credit.name" class="img-fluid w-50 profile">
+          <p>{{ credit.name }}</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

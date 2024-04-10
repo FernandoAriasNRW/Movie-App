@@ -1,0 +1,42 @@
+<div class="row" *ngIf="movies.length > 0">
+  <div class="col-lg-3 col-md-4 col-sm-6 mb-5 d-flex flex-column justify-content-between"
+    *ngFor="let movie of (movies | noImage)">
+    <a [routerLink]="'/movie/'+ movie.id">
+      <img [src]="movie.poster_path | images" [alt]="movie.original_title" class="img-fluid poster">
+    </a>
+    <a [routerLink]="'/movie/'+ movie.id">
+      <h3>{{ movie.title }}</h3>
+    </a>
+    <a [routerLink]="'/movie/'+ movie.id">
+      <div class="row mt-3">
+        <div class="col-10 text-warning">
+          <i *ngIf="(movie.vote_average | average) < 8" class="bi bi-star"></i>
+          <i *ngIf="(movie.vote_average | average) < 18 && (movie.vote_average | average) >= 8"
+            class="bi bi-star-half"></i>
+          <i *ngIf="(movie.vote_average | average) >= 18" class="bi bi-star-fill"></i>
+          <i *ngIf="(movie.vote_average | average) < 28" class="bi bi-star"></i>
+          <i *ngIf="(movie.vote_average | average) < 38 && (movie.vote_average | average) >= 28"
+            class="bi bi-star-half"></i>
+          <i *ngIf="(movie.vote_average | average) >= 38" class="bi bi-star-fill"></i>
+          <i *ngIf="(movie.vote_average | average) < 50" class="bi bi-star"></i>
+          <i *ngIf="(movie.vote_average | average) < 60 && (movie.vote_average | average) >= 50"
+            class="bi bi-star-half"></i>
+          <i *ngIf="(movie.vote_average | average) >= 60" class="bi bi-star-fill"></i>
+          <i *ngIf="(movie.vote_average | average) < 68" class="bi bi-star"></i>
+          <i *ngIf="(movie.vote_average | average) < 80 && (movie.vote_average | average) >= 68"
+            class="bi bi-star-half"></i>
+          <i *ngIf="(movie.vote_average | average) >= 80" class="bi bi-star-fill"></i>
+          <i *ngIf="(movie.vote_average | average) < 88" class="bi bi-star"></i>
+          <i *ngIf="(movie.vote_average | average)< 98 && (movie.vote_average | average) >= 88"
+            class="bi bi-star-half"></i>
+          <i *ngIf="(movie.vote_average | average) >= 98" class="bi bi-star-fill"></i>
+        </div>
+
+        <div class="col-2 text white">
+          {{ movie.vote_average | number: '1.1-1'}}
+        </div>
+      </div>
+    </a>
+  </div>
+
+</div>

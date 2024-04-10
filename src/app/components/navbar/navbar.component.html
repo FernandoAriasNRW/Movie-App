@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand p-2 ms-2" href="#">
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+  <a class="navbar-brand p-2 ms-2" [routerLink]="['']">
     Movies App
     <img class="me-2" src="assets/img/logo_movie_app.jpg" alt="App Logo" width="30" height="24">
   </a>
@@ -14,8 +14,8 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0 col-6 d-flex flex-row">
-      <input class="form-control me-2" type="search" placeholder="Search" (keydown.enter)="searchMovie($event, searchtext.value)" #searchtext >
-      <button class="btn btn-outline-light my-2 my-sm-0" type="button" (click)="searchMovie($event, searchtext.value)">Search</button>
+      <input class="form-control me-2" type="search" placeholder="Search" value="" (keydown.enter)="searchMovie($event, searchtext.value)" #searchtext >
+      <button class="btn btn-outline-light my-2 my-sm-0" type="button" (click)="searchMovie($event, searchtext.value, searchtext)">Search</button>
     </form>
   </div>
 </nav>

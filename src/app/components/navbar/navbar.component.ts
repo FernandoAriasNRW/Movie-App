@@ -11,9 +11,22 @@ export class NavbarComponent {
     private router: Router,
   ) { }
 
-  searchMovie(event: any, term: string) {
+  searchMovie(event: any, term: string, target?: any) {
     event.preventDefault();
-    console.log('searchMovie: ', event, term);
+
+    term = term.trim();
+
+    if (term.length === 0) return;
+
+    if (target) target.value = '';
+
+    event.target.value = '';
+
+
+    this.router.navigate(['/search', term]);
+
   }
 
+
 }
+

@@ -1,5 +1,9 @@
-<div class="row" *ngIf="movies.length > 0">
-  <div class="col">
+<div class="row text-white" *ngIf="movies.length > 0">
+  <div class="col p-0 mb-md-5 slide-container">
     <app-slideshow [movies]="movies"></app-slideshow>
+  </div>
+  <div class="col ms-4 me-3">
+    <h2 class="text-center mb-3">MOVIE LIST</h2>
+    <app-movie-poster-grid [movies]="moviesScroll"></app-movie-poster-grid>
   </div>
 </div>

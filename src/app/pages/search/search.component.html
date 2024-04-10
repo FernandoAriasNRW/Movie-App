@@ -1,1 +1,6 @@
-<p>search works!</p>
+<div class="loading" *ngIf="movies.length === 0">Loading</div>
+
+<div class="col ms-4 me-3" *ngIf="movies.length > 0">
+  <h2 class="mb-5 mt-3 text-white"><span class="fw-bold">Term Searched:</span> {{ term }}</h2>
+  <app-movie-poster-grid [movies]="movies"></app-movie-poster-grid>
+</div>
